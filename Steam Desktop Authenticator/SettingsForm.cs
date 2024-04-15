@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Steam_Desktop_Authenticator
 {
@@ -20,6 +21,8 @@ namespace Steam_Desktop_Authenticator
             chkCheckAll.Checked = manifest.CheckAllAccounts;
             chkConfirmMarket.Checked = manifest.AutoConfirmMarketTransactions;
             chkConfirmTrades.Checked = manifest.AutoConfirmTrades;
+            chkConfirmTradesFromFile.Checked = manifest.AutoConfirmTradesFromFile;
+            txtTradeListFilePath.Text = manifest.TradeListFilePath;
 
             SetControlsEnabledState(chkPeriodicChecking.Checked);
 
@@ -28,18 +31,21 @@ namespace Steam_Desktop_Authenticator
 
         private void SetControlsEnabledState(bool enabled)
         {
-            numPeriodicInterval.Enabled = chkCheckAll.Enabled = chkConfirmMarket.Enabled = chkConfirmTrades.Enabled = enabled;
+            txtTradeListFilePath.Enabled = false;
+            numPeriodicInterval.Enabled = chkCheckAll.Enabled = 
+                chkConfirmMarket.Enabled = chkConfirmTrades.Enabled = chkConfirmTradesFromFile.Enabled = enabled;
         }
 
-        private void ShowWarning(CheckBox affectedBox)
+        private bool ShowWarning(CheckBox affectedBox)
         {
-            if (!fullyLoaded) return;
+            if (!fullyLoaded) return affectedBox.Checked;
 
             var result = MessageBox.Show("Warning: enabling this will severely reduce the security of your items! Use of this option is at your own risk. Would you like to continue?", "Warning!", MessageBoxButtons.YesNo);
             if (result == DialogResult.No)
             {
                 affectedBox.Checked = false;
             }
+            return affectedBox.Checked;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -49,6 +55,9 @@ namespace Steam_Desktop_Authenticator
             manifest.CheckAllAccounts = chkCheckAll.Checked;
             manifest.AutoConfirmMarketTransactions = chkConfirmMarket.Checked;
             manifest.AutoConfirmTrades = chkConfirmTrades.Checked;
+            manifest.AutoConfirmTradesFromFile = chkConfirmTradesFromFile.Checked;
+            manifest.TradeListFilePath = txtTradeListFilePath.Text;
+
             manifest.Save();
             this.Close();
         }
@@ -68,6 +77,28 @@ namespace Steam_Desktop_Authenticator
         {
             if (chkConfirmTrades.Checked)
                 ShowWarning(chkConfirmTrades);
+        }
+
+        private void chkConfirmTradesFromFile_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkConfirmTradesFromFile.Checked)
+            {
+                var shouldContinue = ShowWarning(chkConfirmTradesFromFile);
+                if (!shouldContinue) return;
+
+                using (OpenFileDialog ofd = new OpenFileDialog())
+                {
+                    ofd.InitialDirectory = Manifest.GetExecutableDir();
+                    ofd.Filter = "json files (*.json)|*.json";
+                    ofd.RestoreDirectory = true;
+
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        txtTradeListFilePath.Text = ofd.FileName;
+                    }
+                }
+            }
+
         }
     }
 }

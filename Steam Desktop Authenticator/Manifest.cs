@@ -36,6 +36,12 @@ namespace Steam_Desktop_Authenticator
         [JsonProperty("auto_confirm_trades")]
         public bool AutoConfirmTrades { get; set; } = false;
 
+        [JsonProperty("auto_confirm_trades_from_file")]
+        public bool AutoConfirmTradesFromFile { get; set; } = false;
+
+        [JsonProperty("trade_list_file_path")]
+        public string TradeListFilePath { get; set; } = string.Empty;
+
         private static Manifest _manifest { get; set; }
 
         public static string GetExecutableDir()
