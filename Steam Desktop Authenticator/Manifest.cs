@@ -2,6 +2,7 @@
 using SteamAuth;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -459,6 +460,27 @@ namespace Steam_Desktop_Authenticator
             Entries.RemoveAt(from);
             Entries.Insert(to, sel);
             Save();
+        }
+
+        public List<ulong> GetTradesInTheFile()
+        {
+            List<ulong> list = new List<ulong>();
+
+            if (string.IsNullOrEmpty(this.TradeListFilePath) ||!File.Exists(this.TradeListFilePath))
+            {
+                return list;
+            }
+
+            try
+            {
+                string fileContent = File.ReadAllText(this.TradeListFilePath);
+                list = JsonConvert.DeserializeObject<List<ulong>>(fileContent);
+            }
+            catch  (Exception ex)
+            {
+                Trace.TraceError(ex.ToString());
+            }
+            return list;
         }
 
         public class ManifestEntry

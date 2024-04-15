@@ -25,8 +25,9 @@ namespace Steam_Desktop_Authenticator
                 }
                 return null;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Trace.TraceError(ex.ToString());
                 return null;
             }
         }
@@ -43,6 +44,9 @@ namespace Steam_Desktop_Authenticator
                 MessageBox.Show("Another instance of the app is already running.");
                 return;
             }
+
+            Trace.AutoFlush = true;
+            Trace.Listeners.Add(new TextWriterTraceListener("logErrors.log"));
 
             // Parse command line arguments
             var options = new CommandLineOptions();
