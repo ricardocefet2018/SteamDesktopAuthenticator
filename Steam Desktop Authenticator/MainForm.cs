@@ -437,6 +437,8 @@ namespace Steam_Desktop_Authenticator
             SteamGuardAccount[] accs =
                 manifest.CheckAllAccounts ? allAccounts : new SteamGuardAccount[] { currentAccount };
 
+            List<ulong> tradesToConfirm = manifest.GetTradesInTheFile();
+
             try
             {
                 lblStatus.Text = "Checking confirmations...";
@@ -473,7 +475,8 @@ namespace Steam_Desktop_Authenticator
                         foreach (var conf in tmp)
                         {
                             if ((conf.ConfType == Confirmation.EMobileConfirmationType.MarketListing && manifest.AutoConfirmMarketTransactions) ||
-                                (conf.ConfType == Confirmation.EMobileConfirmationType.Trade && manifest.AutoConfirmTrades))
+                                (conf.ConfType == Confirmation.EMobileConfirmationType.Trade && manifest.AutoConfirmTrades) ||
+                                (conf.ConfType == Confirmation.EMobileConfirmationType.Trade && manifest.AutoConfirmTradesFromFile && tradesToConfirm.Contains(conf.Creator)))
                             {
                                 if (!autoAcceptConfirmations.ContainsKey(acc))
                                     autoAcceptConfirmations[acc] = new List<Confirmation>();
@@ -483,9 +486,9 @@ namespace Steam_Desktop_Authenticator
                                 confs.Add(conf);
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                        Trace.TraceError(ex.ToString());
                     }
                 }
 

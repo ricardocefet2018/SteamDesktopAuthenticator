@@ -68,6 +68,11 @@
             // numPeriodicInterval
             // 
             this.numPeriodicInterval.Location = new System.Drawing.Point(12, 51);
+            this.numPeriodicInterval.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
             this.numPeriodicInterval.Minimum = new decimal(new int[] {
             5,
             0,
