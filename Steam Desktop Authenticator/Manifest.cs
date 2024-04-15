@@ -422,6 +422,7 @@ namespace Steam_Desktop_Authenticator
             {
                 string contents = JsonConvert.SerializeObject(this);
                 File.WriteAllText(filename, contents);
+                Manifest._manifest = this;
                 return true;
             }
             catch (Exception)
