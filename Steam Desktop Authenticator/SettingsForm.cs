@@ -31,8 +31,10 @@ namespace Steam_Desktop_Authenticator
 
         private void SetControlsEnabledState(bool enabled)
         {
-            numPeriodicInterval.Enabled = chkCheckAll.Enabled = 
-                chkConfirmMarket.Enabled = chkConfirmTrades.Enabled = enabled;
+            numPeriodicInterval.Enabled = chkCheckAll.Enabled =
+                chkConfirmMarket.Enabled = chkConfirmTrades.Enabled = chkConfirmTradesFromFile.Enabled = enabled;
+
+            button1.Enabled = chkConfirmTradesFromFile.Checked;
         }
 
         private bool ShowWarning(CheckBox affectedBox)
