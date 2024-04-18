@@ -439,6 +439,11 @@ namespace Steam_Desktop_Authenticator
 
             List<ulong> tradesToConfirm = manifest.GetTradesInTheFile();
 
+            if (!manifest.AutoConfirmMarketTransactions &&
+                !manifest.AutoConfirmTrades &&
+                manifest.AutoConfirmTradesFromFile && 
+                tradesToConfirm.Count == 0) return;
+
             try
             {
                 lblStatus.Text = "Checking confirmations...";
