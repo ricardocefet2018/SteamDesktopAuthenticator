@@ -38,6 +38,8 @@
             this.chkConfirmTrades = new System.Windows.Forms.CheckBox();
             this.chkConfirmTradesFromFile = new System.Windows.Forms.CheckBox();
             this.txtTradeListFilePath = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numPeriodicInterval)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +59,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(12, 211);
+            this.btnSave.Location = new System.Drawing.Point(12, 238);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(224, 38);
             this.btnSave.TabIndex = 1;
@@ -131,7 +133,7 @@
             // chkConfirmTradesFromFile
             // 
             this.chkConfirmTradesFromFile.AutoSize = true;
-            this.chkConfirmTradesFromFile.Location = new System.Drawing.Point(12, 151);
+            this.chkConfirmTradesFromFile.Location = new System.Drawing.Point(12, 175);
             this.chkConfirmTradesFromFile.Name = "chkConfirmTradesFromFile";
             this.chkConfirmTradesFromFile.Size = new System.Drawing.Size(197, 17);
             this.chkConfirmTradesFromFile.TabIndex = 7;
@@ -143,16 +145,38 @@
             // 
             this.txtTradeListFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTradeListFilePath.Location = new System.Drawing.Point(12, 175);
+            this.txtTradeListFilePath.Enabled = false;
+            this.txtTradeListFilePath.Location = new System.Drawing.Point(12, 199);
             this.txtTradeListFilePath.Name = "txtTradeListFilePath";
             this.txtTradeListFilePath.Size = new System.Drawing.Size(224, 22);
             this.txtTradeListFilePath.TabIndex = 8;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(12, 159);
+            this.panel1.Margin = new System.Windows.Forms.Padding(12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(224, 1);
+            this.panel1.TabIndex = 9;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(209, 199);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(26, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(244, 261);
+            this.ClientSize = new System.Drawing.Size(244, 288);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtTradeListFilePath);
             this.Controls.Add(this.chkConfirmTradesFromFile);
             this.Controls.Add(this.chkConfirmTrades);
@@ -186,5 +210,7 @@
         private System.Windows.Forms.CheckBox chkConfirmTrades;
         private System.Windows.Forms.CheckBox chkConfirmTradesFromFile;
         private System.Windows.Forms.TextBox txtTradeListFilePath;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button1;
     }
 }

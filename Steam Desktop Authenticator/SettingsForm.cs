@@ -31,9 +31,8 @@ namespace Steam_Desktop_Authenticator
 
         private void SetControlsEnabledState(bool enabled)
         {
-            txtTradeListFilePath.Enabled = false;
             numPeriodicInterval.Enabled = chkCheckAll.Enabled = 
-                chkConfirmMarket.Enabled = chkConfirmTrades.Enabled = chkConfirmTradesFromFile.Enabled = enabled;
+                chkConfirmMarket.Enabled = chkConfirmTrades.Enabled = enabled;
         }
 
         private bool ShowWarning(CheckBox affectedBox)
@@ -85,6 +84,16 @@ namespace Steam_Desktop_Authenticator
             {
                 var shouldContinue = ShowWarning(chkConfirmTradesFromFile);
                 if (!shouldContinue) return;
+            }
+
+            button1.Enabled = chkConfirmTradesFromFile.Checked;
+            return;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (chkConfirmTradesFromFile.Checked)
+            {
 
                 using (OpenFileDialog ofd = new OpenFileDialog())
                 {
@@ -98,7 +107,6 @@ namespace Steam_Desktop_Authenticator
                     }
                 }
             }
-
         }
     }
 }
