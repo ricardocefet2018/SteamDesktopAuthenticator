@@ -442,7 +442,11 @@ namespace Steam_Desktop_Authenticator
             if (!manifest.AutoConfirmMarketTransactions &&
                 !manifest.AutoConfirmTrades &&
                 manifest.AutoConfirmTradesFromFile && 
-                tradesToConfirm.Count == 0) return;
+                tradesToConfirm.Count == 0)
+            {
+                confirmationsSemaphore.Release(); 
+                return;
+            };
 
             try
             {
@@ -509,7 +513,8 @@ namespace Steam_Desktop_Authenticator
                     foreach (var acc in autoAcceptConfirmations.Keys)
                     {
                         var confirmations = autoAcceptConfirmations[acc].ToArray();
-                        await acc.AcceptMultipleConfirmations(confirmations);
+                        bool sucess = await acc.AcceptMultipleConfirmations(confirmations);
+                        if (sucess) manifest.ClearTradesInFile(tradesToConfirm);
                     }
                 }
             }

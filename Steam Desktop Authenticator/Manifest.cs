@@ -466,7 +466,7 @@ namespace Steam_Desktop_Authenticator
         {
             List<ulong> list = new List<ulong>();
 
-            if (string.IsNullOrEmpty(this.TradeListFilePath) ||!File.Exists(this.TradeListFilePath))
+            if (string.IsNullOrEmpty(this.TradeListFilePath) || !File.Exists(this.TradeListFilePath))
             {
                 return list;
             }
@@ -481,6 +481,20 @@ namespace Steam_Desktop_Authenticator
                 Trace.TraceError(ex.ToString());
             }
             return list;
+        }
+
+        public bool ClearTradesInFile(List<ulong> acceptedTrades)
+        {
+            List<ulong> tradesInFile = this.GetTradesInTheFile();
+
+            List<ulong> leftoverTrades = tradesInFile.Where(trade => !acceptedTrades.Contains(trade)).ToList();
+
+            using (var writer = new StreamWriter(this.TradeListFilePath))
+            {
+                writer.Write(JsonConvert.SerializeObject(leftoverTrades));
+            }
+
+            return true;
         }
 
         public class ManifestEntry
