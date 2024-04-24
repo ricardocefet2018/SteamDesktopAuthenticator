@@ -441,6 +441,7 @@ namespace Steam_Desktop_Authenticator
 
             if (!manifest.AutoConfirmMarketTransactions &&
                 !manifest.AutoConfirmTrades &&
+                !manifest.ShowAPopup &&
                 manifest.AutoConfirmTradesFromFile && 
                 tradesToConfirm.Count == 0)
             {
@@ -503,7 +504,7 @@ namespace Steam_Desktop_Authenticator
 
                 lblStatus.Text = "";
 
-                if (confs.Count > 0)
+                if (manifest.ShowAPopup && confs.Count > 0)
                 {
                     popupFrm.Confirmations = confs.ToArray();
                     popupFrm.Popup();

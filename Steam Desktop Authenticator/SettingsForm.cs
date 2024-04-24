@@ -18,6 +18,7 @@ namespace Steam_Desktop_Authenticator
 
             chkPeriodicChecking.Checked = manifest.PeriodicChecking;
             numPeriodicInterval.Value = manifest.PeriodicCheckingInterval;
+            chkShowPopup.Checked = manifest.ShowAPopup;
             chkCheckAll.Checked = manifest.CheckAllAccounts;
             chkConfirmMarket.Checked = manifest.AutoConfirmMarketTransactions;
             chkConfirmTrades.Checked = manifest.AutoConfirmTrades;
@@ -32,7 +33,8 @@ namespace Steam_Desktop_Authenticator
         private void SetControlsEnabledState(bool enabled)
         {
             numPeriodicInterval.Enabled = chkCheckAll.Enabled =
-                chkConfirmMarket.Enabled = chkConfirmTrades.Enabled = chkConfirmTradesFromFile.Enabled = enabled;
+                chkConfirmMarket.Enabled = chkConfirmTrades.Enabled = 
+                chkConfirmTradesFromFile.Enabled = chkShowPopup.Enabled = enabled;
 
             button1.Enabled = chkConfirmTradesFromFile.Checked;
         }
@@ -53,6 +55,7 @@ namespace Steam_Desktop_Authenticator
         {
             manifest.PeriodicChecking = chkPeriodicChecking.Checked;
             manifest.PeriodicCheckingInterval = (int)numPeriodicInterval.Value;
+            manifest.ShowAPopup = chkShowPopup.Checked;
             manifest.CheckAllAccounts = chkCheckAll.Checked;
             manifest.AutoConfirmMarketTransactions = chkConfirmMarket.Checked;
             manifest.AutoConfirmTrades = chkConfirmTrades.Checked;

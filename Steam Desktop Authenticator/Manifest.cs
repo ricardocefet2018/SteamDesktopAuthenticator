@@ -28,6 +28,9 @@ namespace Steam_Desktop_Authenticator
         [JsonProperty("periodic_checking_interval")]
         public int PeriodicCheckingInterval { get; set; } = 5;
 
+        [JsonProperty("show_a_popup")]
+        public bool ShowAPopup { get; set; } = false;
+
         [JsonProperty("periodic_checking_checkall")]
         public bool CheckAllAccounts { get; set; } = false;
 

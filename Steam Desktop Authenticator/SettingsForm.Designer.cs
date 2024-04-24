@@ -39,6 +39,7 @@
             this.chkConfirmTradesFromFile = new System.Windows.Forms.CheckBox();
             this.txtTradeListFilePath = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.chkShowPopup = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numPeriodicInterval)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             this.chkPeriodicChecking.Name = "chkPeriodicChecking";
             this.chkPeriodicChecking.Size = new System.Drawing.Size(233, 30);
             this.chkPeriodicChecking.TabIndex = 0;
-            this.chkPeriodicChecking.Text = "Periodically check for new confirmations\r\nand show a popup when they arrive";
+            this.chkPeriodicChecking.Text = "Periodically check for new confirmations\r\nand...";
             this.chkPeriodicChecking.UseVisualStyleBackColor = true;
             this.chkPeriodicChecking.CheckedChanged += new System.EventHandler(this.chkPeriodicChecking_CheckedChanged);
             // 
@@ -58,7 +59,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(12, 210);
+            this.btnSave.Location = new System.Drawing.Point(12, 228);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(224, 38);
             this.btnSave.TabIndex = 1;
@@ -100,7 +101,7 @@
             // chkCheckAll
             // 
             this.chkCheckAll.AutoSize = true;
-            this.chkCheckAll.Location = new System.Drawing.Point(12, 81);
+            this.chkCheckAll.Location = new System.Drawing.Point(12, 102);
             this.chkCheckAll.Name = "chkCheckAll";
             this.chkCheckAll.Size = new System.Drawing.Size(213, 17);
             this.chkCheckAll.TabIndex = 4;
@@ -110,7 +111,7 @@
             // chkConfirmMarket
             // 
             this.chkConfirmMarket.AutoSize = true;
-            this.chkConfirmMarket.Location = new System.Drawing.Point(12, 104);
+            this.chkConfirmMarket.Location = new System.Drawing.Point(12, 125);
             this.chkConfirmMarket.Name = "chkConfirmMarket";
             this.chkConfirmMarket.Size = new System.Drawing.Size(198, 17);
             this.chkConfirmMarket.TabIndex = 5;
@@ -121,7 +122,7 @@
             // chkConfirmTrades
             // 
             this.chkConfirmTrades.AutoSize = true;
-            this.chkConfirmTrades.Location = new System.Drawing.Point(12, 127);
+            this.chkConfirmTrades.Location = new System.Drawing.Point(12, 148);
             this.chkConfirmTrades.Name = "chkConfirmTrades";
             this.chkConfirmTrades.Size = new System.Drawing.Size(129, 17);
             this.chkConfirmTrades.TabIndex = 6;
@@ -132,7 +133,7 @@
             // chkConfirmTradesFromFile
             // 
             this.chkConfirmTradesFromFile.AutoSize = true;
-            this.chkConfirmTradesFromFile.Location = new System.Drawing.Point(12, 150);
+            this.chkConfirmTradesFromFile.Location = new System.Drawing.Point(12, 171);
             this.chkConfirmTradesFromFile.Name = "chkConfirmTradesFromFile";
             this.chkConfirmTradesFromFile.Size = new System.Drawing.Size(197, 17);
             this.chkConfirmTradesFromFile.TabIndex = 7;
@@ -145,14 +146,14 @@
             this.txtTradeListFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTradeListFilePath.Enabled = false;
-            this.txtTradeListFilePath.Location = new System.Drawing.Point(12, 174);
+            this.txtTradeListFilePath.Location = new System.Drawing.Point(12, 194);
             this.txtTradeListFilePath.Name = "txtTradeListFilePath";
             this.txtTradeListFilePath.Size = new System.Drawing.Size(224, 22);
             this.txtTradeListFilePath.TabIndex = 8;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(209, 174);
+            this.button1.Location = new System.Drawing.Point(210, 194);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(26, 23);
             this.button1.TabIndex = 10;
@@ -160,11 +161,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // chkShowPopup
+            // 
+            this.chkShowPopup.AutoSize = true;
+            this.chkShowPopup.Location = new System.Drawing.Point(12, 79);
+            this.chkShowPopup.Name = "chkShowPopup";
+            this.chkShowPopup.Size = new System.Drawing.Size(198, 17);
+            this.chkShowPopup.TabIndex = 11;
+            this.chkShowPopup.Text = "Show a popup (if not automated)";
+            this.chkShowPopup.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(244, 260);
+            this.ClientSize = new System.Drawing.Size(244, 278);
+            this.Controls.Add(this.chkShowPopup);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtTradeListFilePath);
             this.Controls.Add(this.chkConfirmTradesFromFile);
@@ -200,5 +212,6 @@
         private System.Windows.Forms.CheckBox chkConfirmTradesFromFile;
         private System.Windows.Forms.TextBox txtTradeListFilePath;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox chkShowPopup;
     }
 }
