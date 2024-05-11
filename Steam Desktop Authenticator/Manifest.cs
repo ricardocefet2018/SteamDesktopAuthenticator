@@ -489,8 +489,9 @@ namespace Steam_Desktop_Authenticator
         public bool ClearTradesInFile(List<ulong> acceptedTrades)
         {
             List<ulong> tradesInFile = this.GetTradesInTheFile();
+            ulong biggestTradeId = acceptedTrades.Max();
 
-            List<ulong> leftoverTrades = tradesInFile.Where(trade => !acceptedTrades.Contains(trade)).ToList();
+            List<ulong> leftoverTrades = tradesInFile.Where(trade => trade>biggestTradeId).ToList();
 
             using (var writer = new StreamWriter(this.TradeListFilePath))
             {
