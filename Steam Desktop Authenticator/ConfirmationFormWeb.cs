@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SteamAuth;
 using System.Drawing.Drawing2D;
+using System.Diagnostics;
 
 namespace Steam_Desktop_Authenticator
 {
@@ -68,7 +69,14 @@ namespace Steam_Desktop_Authenticator
                     if (!string.IsNullOrEmpty(confirmation.Icon))
                     {
                        PictureBox pictureBox = new PictureBox() { Width = 60, Height = 60, Location = new Point(20, 20), SizeMode = PictureBoxSizeMode.Zoom };
-                       pictureBox.Load(confirmation.Icon);
+                        try
+                        {
+                            pictureBox.Load(confirmation.Icon);
+                        }
+                        catch (Exception ex)
+                        {
+                            Trace.TraceError(ex.ToString());
+                        }
                        panel.Controls.Add(pictureBox);
                     }
 
